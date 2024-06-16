@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Contact from './components/Contact';
-
+import Error from './components/Error';
 import About from './components/About';
 
 
@@ -15,6 +15,7 @@ const appRouter = createBrowserRouter(
     {
       path: "/",
       element:<App/>,
+      errorElement:<Error/>
     },
     {
       path: "/about",
@@ -24,6 +25,7 @@ const appRouter = createBrowserRouter(
       path: "/contact",
       element:<Contact/>,
     },
+   
 
   ]
 );
