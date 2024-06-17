@@ -15,7 +15,7 @@ function App() {
 
     <div className="app">
       <Header/>
-      <Body/>
+      {/* <Body/> */}
 
     </div>
   
