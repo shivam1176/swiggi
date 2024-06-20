@@ -34,7 +34,7 @@ const Body=()=>{
 
                 console.log(searchText);
                const filteredRes= listOFRes.filter(
-                (res)=>res.info.name.includes(searchText)
+                (res)=>res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase())
               );
                setreslist(filteredRes);
               }}
