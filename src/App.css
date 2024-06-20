@@ -1,70 +1,150 @@
-.header{
-  display :flex;
-  justify-content: space-between;
-  border: 1px solid black;
-
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.logo{
-  width: 200px;
-  
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
 }
-.nav-items >ul {
-  font-size: 24px;
+
+.header {
   display: flex;
-  list-style-type: none;
   justify-content: space-between;
-}
-.nav-items > ul > li{
-  padding: 10px;
-  margin: 10px;
-
-}
-.res-card{
-  width: 200px;
-  /* height: 400px; */
-
-  margin: 20px;
-  text-align: center   ;
-
-}
-.res-card:hover{
-   
-  border: 1px solid black;
-  cursor: pointer;
-
-}
-  
-.search{
-  padding: 10px;
-}
-.search >h3{
-  padding-left: 10px;
-}
-.res-logo{
-  width:180px;
-  padding:10px;
-  
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-.res-container{
+.logo {
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-items > ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-items > ul > li {
+  padding: 10px 15px;
+  margin: 0 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-items > ul > li:hover {
+  color: #1e5128;
+  background-color: #e0f7fa;
+  border-radius: 5px;
+}
+
+.res-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
 }
-.shimmer-cantainer{
-  display: flex;
-}
-.shimmer-cards{
-  margin: 10px;
-  width:200px;
-  height: 400px;
-  background-color: #f0f0f0;
-}
-.login{
-  padding:  0px 20px ;
-  cursor: pointer;
 
+.res-card {
+  width: 200px;
+  margin: 20px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.filter{
+
+.res-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.res-logo {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.search {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
   display: flex;
+  align-items: center;
+}
+
+.search > h3 {
+  padding-left: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.shimmer-card {
+  margin: 10px;
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 12px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.login:hover {
+  color: #1e5128;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
