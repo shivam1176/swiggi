@@ -2,63 +2,75 @@ import RestaurentCard from "./RestaurentCard";
 import {useState,useEffect} from "react";   
 // import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body=()=>{
   // const [listOFRes,setreslist] = useState(resList);
   const [listOFRes,setreslist] = useState([]);
 
-  const [searchText,setSearchText] = useState("")
+  const [searchText,setSearchText] = useState("");
+  const fetchData= async()=>{
+
+      const data = await fetch(
+       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.2668695&lng=75.70225669999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+        const json = await data.json();
+        console.log(json);
+        setreslist(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);    
+  }
+
    useEffect(()=>{
     fetchData();
-     console.log("useEffect called");  
    },[]);
-   const fetchData= async()=>{
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.2668695&lng=75.70225669999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setreslist(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants); 
-   }
 
-   if(listOFRes.length ===0){
-    // return <h1>loading.....</h1>;
-    return <Shimmer/>;
-   }
-    return (
+
+   if(listOFRes.length ===0) return <Shimmer/>;
+   
+  return (
       <div className="body">
         <div className="filter">
-          <div className="search">
-            <input type="text" className="search-box" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}/>
-              <button onClick={()=>{
+              <div className="search">
+                <input type="text" 
+                className="search-box" 
+                value={searchText} 
+                onChange={(e)=>{setSearchText(e.target.value)}}
+                />
 
-                console.log(searchText);
-               const filteredRes= listOFRes.filter(
-                (res)=>res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase())
-              );
-               setreslist(filteredRes);
-              }}
-              >
-                search
-              </button>
-          </div>
-            <button className="filter-btn" 
-              onClick={()=>{ 
-                
-                const filteredList =listOFRes.filter(
-                    (res)=>res.info.avgRating >4               
-                 );
-                 setreslist(filteredList);
-                  }}>top rated resturents
-            </button>
+                  <button onClick={()=>{
+                        console.log(searchText);
+                      const filteredRes= listOFRes.filter(
+                        (res)=>res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase())
+                      );
+                      setreslist(filteredRes);
+                      }}
+                  >search
+
+                  </button>
+
+              </div>
+
+                <button className="filter-btn" 
+                  onClick={()=>{ 
+                    const filteredList =listOFRes
+                    .filter((res)=>res.info.avgRating > 4 );
+                    setreslist(filteredList);
+                  }}
+                >top rated resturents
+                </button>
+
         </div>
         <div className="res-container">
-          {  
-            listOFRes.map((rest)=><RestaurentCard  resData={rest}/>)
+          {/* {  
+            listOFRes.map(
+              (rest)=><RestaurentCard  resData={rest}/>
+            )
+          } */}
+            {  
+            listOFRes.map(
+              (rest)=><Link key="rest.info.id" to={"/restaurents/"+rest.info.id}><RestaurentCard resData={rest}/></Link>
+            )
           }
-          {/* <RestaurentCard resData={resData[1]}/>
-         
-          <RestaurentCard resData={resData[0]}/> */}
+
         </div>
       </div>
     )

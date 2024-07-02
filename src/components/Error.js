@@ -2,7 +2,7 @@ import {useReactError, useRouteError} from "react-router-dom";
 
 
 function Error() {
-    const err= useRouteError ();
+    const err= useRouteError();
     console.log(err);
   return (
     <div>

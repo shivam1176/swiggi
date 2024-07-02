@@ -1,3 +1,4 @@
+import User from "./User"
 const  About=()=>{
     return (
         <div>
@@ -5,6 +6,7 @@ const  About=()=>{
                 About
             </h1>
             <h2>this is namaste react web series</h2>
+            <User/>
         </div>
     )
 }

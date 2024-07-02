@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 const Header =()=>{
   const [btnNameReact,setBtnNameReact]= useState('login');
 
@@ -10,9 +11,9 @@ const Header =()=>{
         </div>
         <div className="nav-items">
           <ul>
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>CONTACT US</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/About">About</Link></li>
+            <li><Link to="/Contact">CONTACT US</Link></li>
             <li>CART</li>
             <button className="login" onClick={() => setBtnNameReact(btnNameReact === "login" ? "logout" : "login")}>{btnNameReact}</button>
           </ul>  
