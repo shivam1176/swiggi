@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus";
 const Header =()=>{
   const [btnNameReact,setBtnNameReact]= useState('login');
-
+const onlineStatus = useOnlineStatus;
     return (
   
       <div className='header'>
@@ -11,6 +12,7 @@ const Header =()=>{
         </div>
         <div className="nav-items">
           <ul>
+            <li>Online :{useOnlineStatus ? "💚":"❌" }</li>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/About">About</Link></li>
             <li><Link to="/Contact">CONTACT US</Link></li>

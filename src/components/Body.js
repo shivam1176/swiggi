@@ -1,14 +1,13 @@
 import RestaurentCard from "./RestaurentCard";
 import {useState,useEffect} from "react";   
-// import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus"
 
 const Body=()=>{
-  // const [listOFRes,setreslist] = useState(resList);
   const [listOFRes,setreslist] = useState([]);
-
   const [searchText,setSearchText] = useState("");
+
   const fetchData= async()=>{
 
       const data = await fetch(
@@ -23,9 +22,10 @@ const Body=()=>{
     fetchData();
    },[]);
 
+   const onlineStatus = useOnlineStatus();
+   if(onlineStatus === false) return <h1>looks like you are offline</h1>
 
    if(listOFRes.length ===0) return <Shimmer/>;
-   
   return (
       <div className="body">
         <div className="filter">
@@ -60,17 +60,11 @@ const Body=()=>{
 
         </div>
         <div className="res-container">
-          {/* {  
-            listOFRes.map(
-              (rest)=><RestaurentCard  resData={rest}/>
-            )
-          } */}
             {  
             listOFRes.map(
               (rest)=><Link key="rest.info.id" to={"/restaurents/"+rest.info.id}><RestaurentCard resData={rest}/></Link>
             )
           }
-
         </div>
       </div>
     )
