@@ -6,7 +6,7 @@ const styleCard={
     backgroundColor:"#f0f0f0",
   }
     const{resData}= props;
-    console.log(props);
+    // console.log(props);
     const {cloudinaryImageId,name,cuisines,avgRatingString,sla} =resData?.info;
     return(
       <div className="res-card" style={styleCard}>
@@ -19,8 +19,23 @@ const styleCard={
          <h4>{avgRatingString} stars </h4>
          <h4>{sla.slaString}  </h4>
         
-      </div>
+      </div>  
     )
   }
+//  export const withPromtedLabel = (RestaurentCard)=>{
+//     return (props)=>{
+//       return(
+//         <div>
+//           <label>
+//             Promoted
+//           </label>
+//           <RestaurentCard {...props}/>
+//         </div>
+//       )
+
+//     }
+//   }
+
+
   
   export default RestaurentCard;
