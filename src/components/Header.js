@@ -1,9 +1,13 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./useOnlineStatus";
+import {useSelector} from "react-redux";
 const Header =()=>{
   const [btnNameReact,setBtnNameReact]= useState('login');
 const onlineStatus = useOnlineStatus;
+// Selector 
+
+const cartItems = useSelector((store)=>store.cart.items);
     return (
   
       <div className='header'>
@@ -16,7 +20,7 @@ const onlineStatus = useOnlineStatus;
             <li><Link to="/">Home</Link></li>
             <li><Link to="/About">About</Link></li>
             <li><Link to="/Contact">CONTACT US</Link></li>
-            <li>CART</li>
+            <li> <Link to="/Cart">CART-({cartItems.length} items)</Link></li>
             <button className="login" onClick={() => setBtnNameReact(btnNameReact === "login" ? "logout" : "login")}>{btnNameReact}</button>
           </ul>  
         </div>

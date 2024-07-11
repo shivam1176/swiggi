@@ -13,20 +13,22 @@ import RestaurentMenu from './components/RestaurentMenu';
 import './App.css';
 import Header from'./components/Header';
 // import Body from './components/Body';
+import {Provider} from "react-redux";
+import appStore from './utils/appStore';
 
-
-
+import Cart from './components/Cart';
 function App() {
   return ( 
 
 
-
+<Provider store={appStore}>
     <div className="app">
       <Header/>
       <Outlet/>
       {/* <Body/> */}
 
     </div>
+</Provider>
   
   );
 }
@@ -52,7 +54,12 @@ const appRouter = createBrowserRouter(
         {
           path: "restaurents/:resId",
           element: <RestaurentMenu/>
+        } ,
+        {
+          path: "/cart",
+          element: <Cart/>
         } 
+        
 
       ],
       errorElement:<Error/>
